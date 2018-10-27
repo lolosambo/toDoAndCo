@@ -43,15 +43,24 @@ class User implements UserInterface
     private $tasks = [];
 
 
+    /**
+     * User constructor.
+     *
+     * @param string|null $username
+     * @param string|null $password
+     * @param string|null $email
+     * @param string|null $role
+     */
     public function __construct(
-        string $username,
-        string $password,
-        string $email
+        string $username = null,
+        string $password = null,
+        string $email = null,
+        string $role = null
     ) {
         $this->username = $username;
         $this->password= $password;
         $this->email = $email;
-        $this->role = "admin";
+        $this->role = $role;
     }
 
     /**
@@ -119,11 +128,19 @@ class User implements UserInterface
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getRoles()
     {
-        return $this->role;
+        return ['ROLE_USER', 'ROLE_ADMIN'];
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole(string $role)
+    {
+        $this->role = $role;
     }
 
     /**

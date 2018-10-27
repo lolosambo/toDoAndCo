@@ -14,12 +14,13 @@ use AppBundle\Models\Entity\User;
 use AppBundle\Models\Repository\Interfaces\UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
 /**
  * Class UserRepository.
  *
  * @author Laurent BERTON <lolosambo2@gmail.com>
  */
-class UsersRepository extends ServiceEntityRepository implements UserRepositoryInterface
+class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface
 {
     /**
      * UserRepository constructor.
@@ -45,6 +46,17 @@ class UsersRepository extends ServiceEntityRepository implements UserRepositoryI
             ->setCacheable(true)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @return array
+     */
+    public function findAllUsers(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->setCacheable(true)
+            ->getQuery()
+            ->getResult();
     }
 
     /**

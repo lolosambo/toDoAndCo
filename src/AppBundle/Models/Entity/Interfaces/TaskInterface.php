@@ -2,7 +2,7 @@
 
 namespace AppBundle\Models\Entity\Interfaces;
 
-use AppBundle\Models\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class Task
@@ -60,8 +60,7 @@ interface TaskInterface
     public function getUser();
 
     /**
-     * @param User $user
-     * @return void
+     * @param UserInterface $user
      */
-    public function setUser(User $user): void;
+    public function setUser(UserInterface $user): void;
 }

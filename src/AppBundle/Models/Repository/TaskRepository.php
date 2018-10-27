@@ -14,6 +14,7 @@ use AppBundle\Models\Entity\Task;
 use AppBundle\Models\Repository\Interfaces\TaskRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+
 /**
  * Class TaskRepository.
  *
@@ -65,7 +66,7 @@ class TaskRepository extends ServiceEntityRepository implements TaskRepositoryIn
     {
         return $this->createQueryBuilder('t')
             ->delete()
-            ->where('u.id = ?1')
+            ->where('t.id = ?1')
             ->setParameter(1, $taskId)
             ->setCacheable(true)
             ->getQuery()

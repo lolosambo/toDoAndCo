@@ -28,6 +28,11 @@ interface UserRepositoryInterface
     public function findUser(int $userId);
 
     /**
+     * @return array
+     */
+    public function findAllUsers(): array;
+
+    /**
      * @param $user
      *
      */

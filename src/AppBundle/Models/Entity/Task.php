@@ -2,7 +2,7 @@
 
 namespace AppBundle\Models\Entity;
 
-use AppBundle\Models\Entity\User;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Models\Entity\Interfaces\TaskInterface;
 
@@ -47,11 +47,13 @@ class Task implements TaskInterface
 
 
     public function __construct(
-        string $title,
-        string $content
+        string $title = null,
+        string $content = null
     ) {
         $this->createdAt = new \Datetime();
         $this->isDone = false;
+        $this->title = $title;
+        $this->content = $content;
     }
 
     /**
@@ -135,11 +137,9 @@ class Task implements TaskInterface
     }
 
     /**
-     * @param User $user
-     *
-     * @return void
+     * @param UserInterface $user
      */
-    public function setUser(User $user): void
+    public function setUser(UserInterface $user): void
     {
         $this->user = $user;
     }

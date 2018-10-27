@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity\Interfaces;
+namespace AppBundle\Models\Entity\Interfaces;
 
 use AppBundle\Models\Entity\Task;
 
