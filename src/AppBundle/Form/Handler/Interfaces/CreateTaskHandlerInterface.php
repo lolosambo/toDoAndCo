@@ -21,13 +21,9 @@ use Symfony\Component\HttpFoundation\Request;
 interface CreateTaskHandlerInterface
 {
     /**
-     * @param Request $request
      * @param FormInterface $userType
      *
      * @return bool|mixed
      */
-    public function handle(
-        Request $request,
-        FormInterface $taskType
-    );
+    public function handle(FormInterface $taskType);
 }

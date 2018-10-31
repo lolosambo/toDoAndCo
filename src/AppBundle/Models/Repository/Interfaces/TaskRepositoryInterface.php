@@ -20,11 +20,9 @@ use AppBundle\Models\Entity\Task;
 interface TaskRepositoryInterface
 {
     /**
-     * @param int $id
+     * @param int $taskId
      *
-     * @return null|Task
-     *
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @return mixed
      */
     public function findTask(int $taskId);
 

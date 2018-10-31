@@ -14,7 +14,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Models\Repository\Interfaces\UserRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Environment;
 
 /**
@@ -35,18 +39,33 @@ class ShowAllUsersController
     private $twig;
 
     /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGenerator;
+
+    /**
+     * @var TokenStorageInterface
+     */
+    private $token;
+
+    /**
      * ShowAllUsersController constructor.
      *
      * @param UserRepositoryInterface $userRepository
+     * @param TokenStorageInterface $token
      * @param Environment $twig
      */
     public function __construct(
         UserRepositoryInterface $userRepository,
+        TokenStorageInterface $token,
+        UrlGeneratorInterface $urlGenerator,
         Environment $twig
     )
     {
         $this->userRepository = $userRepository;
         $this->twig = $twig;
+        $this->urlGenerator = $urlGenerator;
+        $this->token = $token;
     }
 
     /**
@@ -58,8 +77,13 @@ class ShowAllUsersController
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke()
+    public function __invoke(Request $request)
     {
+        $this->token->getToken()->getUser();
+        if(($this->token->getToken()->getUser() === "anon.") || ($this->token->getToken()->getUser()->getRole() !== "ROLE_ADMIN")){
+            $request->getSession()->getFlashBag()->add('error', "Petit malin ! Vous n'avez pas accès à cette fonction !");
+            return new RedirectResponse($this->urlGenerator->generate('login'));
+        }
         return new Response($this->twig->render('user/list.html.twig', ['users' => $this->userRepository->findAllUsers()]));
     }
 

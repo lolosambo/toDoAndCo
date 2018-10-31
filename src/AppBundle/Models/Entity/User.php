@@ -3,7 +3,6 @@
 namespace AppBundle\Models\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
@@ -16,19 +15,17 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @Assert\NotBlank(message="Vous devez saisir un nom d'utilisateur.")
+     * @var string
      */
     private $username;
 
     /**
-     * @var string $password
+     * @var string
      */
     private $password;
 
     /**
-     * var string $email
-     * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
-     * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
+     * @var string
      */
     private $email;
 
@@ -124,7 +121,11 @@ class User implements UserInterface
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        if (preg_match('#^([0-9a-zA-Z-_]+)@([0-9a-zA-Z-_]+).([a-z]+)$#', $email)) {
+            $this->email = $email;
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -133,6 +134,14 @@ class User implements UserInterface
     public function getRoles()
     {
         return ['ROLE_USER', 'ROLE_ADMIN'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 
     /**
@@ -148,6 +157,7 @@ class User implements UserInterface
      */
     public function eraseCredentials()
     {
+        return null;
     }
 
     /**

@@ -137,9 +137,9 @@ class Task implements TaskInterface
     }
 
     /**
-     * @param UserInterface $user
+     * @param $user
      */
-    public function setUser(UserInterface $user): void
+    public function setUser($user): void
     {
         $this->user = $user;
     }

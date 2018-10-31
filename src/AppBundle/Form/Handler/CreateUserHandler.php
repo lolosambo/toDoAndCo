@@ -58,10 +58,8 @@ class CreateUserHandler implements CreateUserHandlerInterface
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function handle(
-        Request $request,
-        FormInterface $userType
-    ) {
+    public function handle(FormInterface $userType)
+    {
         if ($userType->isSubmitted() && $userType->isValid()) {
             $username = $userType->getData()->username;
             $email = $userType->getData()->email;

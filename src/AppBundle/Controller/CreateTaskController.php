@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Environment;
 
 /**
@@ -51,6 +52,11 @@ class CreateTaskController
     private $urlGenerator;
 
     /**
+     * @var TokenStorageInterface
+     */
+    private $token;
+
+    /**
      * TaskController constructor.
      *
      * @param TaskRepositoryInterface $
@@ -60,12 +66,14 @@ class CreateTaskController
         TaskRepositoryInterface $taskRepository,
         Environment $twig,
         FormFactoryInterface $formFactory,
-        UrlGeneratorInterface $urlGenerator
+        UrlGeneratorInterface $urlGenerator,
+        TokenStorageInterface $token
     ) {
         $this->taskRepository = $taskRepository;
         $this->twig = $twig;
         $this->formFactory = $formFactory;
         $this->urlGenerator = $urlGenerator;
+        $this->token = $token;
     }
 
     /**
@@ -85,14 +93,19 @@ class CreateTaskController
         Request $request,
         CreateTaskHandlerInterface $handler
     ) {
-        $form = $this->formFactory->create(TaskType::class);
-        $form->handleRequest($request);
-        if ($handler->handle($request, $form)) {
-            $request->getSession()->getFlashBag()->add('success', 'La tâche a été bien été ajoutée.');
+        $this->token->getToken()->getUser();
+        if ($this->token->getToken()->getUser() !== "anon.") {
+            $form = $this->formFactory->create(TaskType::class);
+            $form->handleRequest($request);
+            if ($handler->handle($form)) {
+                $request->getSession()->getFlashBag()->add('success', 'La tâche a été bien été ajoutée.');
 
-            return new RedirectResponse($this->urlGenerator->generate('task_list'));
+                return new RedirectResponse($this->urlGenerator->generate('task_list'));
+            }
+
+            return new Response($this->twig->render('task/create.html.twig', ['form' => $form->createView()]));
         }
-
-        return new Response($this->twig->render('task/create.html.twig', ['form' => $form->createView()]));
+        $request->getSession()->getFlashBag()->add('error', "Petit malin ! Vous ne pouvez pas créer de tâche sans être authentifié !");
+        return new RedirectResponse($this->urlGenerator->generate('login'));
     }
 }

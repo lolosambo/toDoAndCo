@@ -12,8 +12,10 @@ declare(strict_types=1);
 
 namespace AppBundle\Controller;
 
+use AppBundle\Models\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Twig\Environment;
 
 /**
@@ -34,8 +36,11 @@ class IndexController
      *
      * @param Environment $twig
      */
-    public function __construct(Environment $twig)
-    {
+    public function __construct(
+        TokenStorageInterface $token,
+        Environment $twig
+    ) {
+        $this->token = $token;
         $this->twig = $twig;
     }
 

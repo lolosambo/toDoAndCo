@@ -11,7 +11,6 @@ declare(strict_types=1);
 namespace AppBundle\Form\Handler\Interfaces;
 
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class CreateUserHandlerInterface.
@@ -21,7 +20,6 @@ use Symfony\Component\HttpFoundation\Request;
 interface CreateUserHandlerInterface
 {
     /**
-     * @param Request $request
      * @param FormInterface $userType
      *
      * @return bool|mixed
@@ -31,8 +29,5 @@ interface CreateUserHandlerInterface
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function handle(
-        Request $request,
-        FormInterface $userType
-    );
+    public function handle(FormInterface $userType);
 }

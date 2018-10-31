@@ -94,10 +94,10 @@ class CreateUserController
     ) {
         $form = $this->formFactory->create(UserType::class);
         $form->handleRequest($request);
-        if ($handler->handle($request, $form)) {
-            $request->getSession()->getFlashBag()->add('success', "L'utilisateur a bien été ajouté.");
+        if ($handler->handle($form)) {
+            $request->getSession()->getFlashBag()->add('success', "L'utilisateur a bien été ajouté. Vous pouvez maintenant vous connecter.");
 
-            return new RedirectResponse($this->urlGenerator->generate('user_list'));
+            return new RedirectResponse($this->urlGenerator->generate('login'));
         }
 
         return new Response($this->twig->render('user/create.html.twig', ['form' => $form->createView()]));

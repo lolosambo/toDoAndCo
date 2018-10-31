@@ -31,10 +31,11 @@ class TaskRepository extends ServiceEntityRepository implements TaskRepositoryIn
     {
         parent::__construct($registry, Task::class);
     }
+
     /**
-     * @param int $id
+     * @param int $taskId
      *
-     * @return null|Task
+     * @return mixed
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */

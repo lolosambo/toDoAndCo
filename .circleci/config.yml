@@ -1,0 +1,34 @@
+version: 2
+jobs:
+    phpunit:
+        docker:
+            - image: circleci/php:7.2.9-apache-browsers
+        environment:
+            DB_DRIVER_DEV: pdo_pgsql
+            DB_CHARSET_DEV: utf8
+            DB_VERSION_DEV: 9.6
+        steps:
+            - checkout
+            - run: echo 'Hello World'
+            - run: sudo apt install -y libsqlite3-dev zlib1g-dev
+            - run: sudo docker-php-ext-install zip
+            - run: sudo composer self-update
+            - restore_cache:
+                keys:
+                    - composer-v1-{{ checksum "composer.json" }}
+                    - composer-v1-
+            - run: composer install -n --optimize-autoloader --classmap-authoritative
+            - run: composer dump-autoload --optimize --classmap-authoritative
+            - save_cache:
+                key: composer-v1-{{ checksum "composer.json" }}
+                paths:
+                    - vendor
+            - run: ./bin/console d:d:c --env=test
+            - run: ./bin/console d:s:c --env=test
+            - run: ./bin/console d:f:l --env=test -n
+            - run: ./bin/phpunit -v --group unit
+workflows:
+    version: 2
+    unit_test:
+        jobs:
+            - phpunit

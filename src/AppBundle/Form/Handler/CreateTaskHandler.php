@@ -12,14 +12,12 @@ namespace AppBundle\Form\Handler;
 
 use AppBundle\Form\Handler\Interfaces\CreateTaskHandlerInterface;
 use AppBundle\Models\Entity\Task;
-use AppBundle\Models\Entity\User;
 use AppBundle\Models\Repository\Interfaces\TaskRepositoryInterface;
-use AppBundle\Models\Repository\Interfaces\UserRepositoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
-use Symfony\Component\Serializer\SerializerInterface;
+
 
 /**
  * Class CreateTaskHandler.
@@ -61,14 +59,10 @@ class CreateTaskHandler implements CreateTaskHandlerInterface
     }
 
     /**
-     * @param Request $request
      * @param FormInterface $taskType
      * @return bool|mixed
      */
-    public function handle(
-        Request $request,
-        FormInterface $taskType
-    ) {
+    public function handle(FormInterface $taskType) {
         if ($taskType->isSubmitted() && $taskType->isValid()) {
             $title = $taskType->getData()->title;
             $content = $taskType->getData()->content;

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/toDoAndCo/src/AppBundle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href=".css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href=".css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href=".css/style.css" rel="stylesheet" type="text/css">
+  <link href=".css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="index.html">/var/www/toDoAndCo/src/AppBundle</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/EditUserController.php.html#33">AppBundle\Controller\EditUserController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/IndexController.php.html#24">AppBundle\Controller\IndexController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#9">AppBundle\Controller\SecurityController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ShowAllUsersController.php.html#29">AppBundle\Controller\ShowAllUsersController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ToggleTaskController.php.html#28">AppBundle\Controller\ToggleTaskController</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Repository/UserRepository.php.html#23">AppBundle\Models\Repository\UserRepository</a></td><td class="text-right">11%</td></tr>
+       <tr><td><a href="Form/Handler/EditUserHandler.php.html#27">AppBundle\Form\Handler\EditUserHandler</a></td><td class="text-right">17%</td></tr>
+       <tr><td><a href="Form/Handler/CreateUserHandler.php.html#25">AppBundle\Form\Handler\CreateUserHandler</a></td><td class="text-right">27%</td></tr>
+       <tr><td><a href="Form/Handler/CreateTaskHandler.php.html#27">AppBundle\Form\Handler\CreateTaskHandler</a></td><td class="text-right">46%</td></tr>
+       <tr><td><a href="Form/Type/UserType.php.html#16">AppBundle\Form\Type\UserType</a></td><td class="text-right">68%</td></tr>
+       <tr><td><a href="Controller/CreateTaskController.php.html#31">AppBundle\Controller\CreateTaskController</a></td><td class="text-right">81%</td></tr>
+       <tr><td><a href="Controller/CreateUserController.php.html#32">AppBundle\Controller\CreateUserController</a></td><td class="text-right">83%</td></tr>
+       <tr><td><a href="Models/Repository/TaskRepository.php.html#23">AppBundle\Models\Repository\TaskRepository</a></td><td class="text-right">87%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Controller/ShowAllUsersController.php.html#29">AppBundle\Controller\ShowAllUsersController</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Form/Handler/EditUserHandler.php.html#27">AppBundle\Form\Handler\EditUserHandler</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/EditUserController.php.html#33">AppBundle\Controller\EditUserController</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Form/Handler/CreateUserHandler.php.html#25">AppBundle\Form\Handler\CreateUserHandler</a></td><td class="text-right">10</td></tr>
+       <tr><td><a href="Form/Handler/CreateTaskHandler.php.html#27">AppBundle\Form\Handler\CreateTaskHandler</a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/CreateTaskController.php.html#31">AppBundle\Controller\CreateTaskController</a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="Controller/CreateUserController.php.html#32">AppBundle\Controller\CreateUserController</a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Models/Repository/UserRepository.php.html#77"><abbr title="AppBundle\Models\Repository\UserRepository::flush">flush</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ShowAllUsersController.php.html#80"><abbr title="AppBundle\Controller\ShowAllUsersController::__invoke">__invoke</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Repository/UserRepository.php.html#68"><abbr title="AppBundle\Models\Repository\UserRepository::save">save</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Repository/UserRepository.php.html#54"><abbr title="AppBundle\Models\Repository\UserRepository::findAllUsers">findAllUsers</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Repository/UserRepository.php.html#41"><abbr title="AppBundle\Models\Repository\UserRepository::findUser">findUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Models/Repository/TaskRepository.php.html#83"><abbr title="AppBundle\Models\Repository\TaskRepository::save">save</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Handler/EditUserHandler.php.html#63"><abbr title="AppBundle\Form\Handler\EditUserHandler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ToggleTaskController.php.html#62"><abbr title="AppBundle\Controller\ToggleTaskController::__invoke">__invoke</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ToggleTaskController.php.html#46"><abbr title="AppBundle\Controller\ToggleTaskController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ShowAllUsersController.php.html#58"><abbr title="AppBundle\Controller\ShowAllUsersController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#38"><abbr title="AppBundle\Controller\SecurityController::logoutCheck">logoutCheck</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#30"><abbr title="AppBundle\Controller\SecurityController::loginCheck">loginCheck</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/SecurityController.php.html#14"><abbr title="AppBundle\Controller\SecurityController::loginAction">loginAction</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/IndexController.php.html#51"><abbr title="AppBundle\Controller\IndexController::__invoke">__invoke</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/IndexController.php.html#37"><abbr title="AppBundle\Controller\IndexController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/EditUserController.php.html#93"><abbr title="AppBundle\Controller\EditUserController::__invoke">__invoke</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/EditUserController.php.html#67"><abbr title="AppBundle\Controller\EditUserController::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Form/Handler/CreateUserHandler.php.html#61"><abbr title="AppBundle\Form\Handler\CreateUserHandler::handle">handle</abbr></a></td><td class="text-right">13%</td></tr>
+       <tr><td><a href="Form/Handler/CreateTaskHandler.php.html#65"><abbr title="AppBundle\Form\Handler\CreateTaskHandler::handle">handle</abbr></a></td><td class="text-right">22%</td></tr>
+       <tr><td><a href="Form/Type/UserType.php.html#40"><abbr title="AppBundle\Form\Type\UserType::configureOptions">configureOptions</abbr></a></td><td class="text-right">44%</td></tr>
+       <tr><td><a href="Controller/CreateUserController.php.html#91"><abbr title="AppBundle\Controller\CreateUserController::__invoke">__invoke</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Controller/CreateTaskController.php.html#84"><abbr title="AppBundle\Controller\CreateTaskController::__invoke">__invoke</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="Models/Entity/User.php.html#182"><abbr title="AppBundle\Models\Entity\User::removeTask">removeTask</abbr></a></td><td class="text-right">75%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Form/Handler/EditUserHandler.php.html#63"><abbr title="AppBundle\Form\Handler\EditUserHandler::handle">handle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Controller/ShowAllUsersController.php.html#80"><abbr title="AppBundle\Controller\ShowAllUsersController::__invoke">__invoke</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Form/Handler/CreateUserHandler.php.html#61"><abbr title="AppBundle\Form\Handler\CreateUserHandler::handle">handle</abbr></a></td><td class="text-right">8</td></tr>
+       <tr><td><a href="Form/Handler/CreateTaskHandler.php.html#65"><abbr title="AppBundle\Form\Handler\CreateTaskHandler::handle">handle</abbr></a></td><td class="text-right">7</td></tr>
+       <tr><td><a href="Controller/EditUserController.php.html#93"><abbr title="AppBundle\Controller\EditUserController::__invoke">__invoke</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Controller/CreateTaskController.php.html#84"><abbr title="AppBundle\Controller\CreateTaskController::__invoke">__invoke</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Controller/CreateUserController.php.html#91"><abbr title="AppBundle\Controller\CreateUserController::__invoke">__invoke</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Models/Entity/User.php.html#182"><abbr title="AppBundle\Models\Entity\User::removeTask">removeTask</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 6.1.3</a> using <a href="https://secure.php.net/" target="_top">PHP 7.2.8</a> with <a href="https://xdebug.org/">Xdebug 2.6.1</a> and <a href="https://phpunit.de/">PHPUnit 7.4.3</a> at Tue Oct 30 20:50:36 UTC 2018.</small>
+    </p>
+   </footer>
+  </div>
+  <script src=".js/jquery.min.js" type="text/javascript"></script>
+  <script src=".js/d3.min.js" type="text/javascript"></script>
+  <script src=".js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([5,0,2,1,0,1,0,1,0,3,1,11], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([17,0,1,1,0,1,0,2,1,0,0,54], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[100,0,"<a href=\"AppBundle.php.html#7\">AppBundle\\AppBundle<\/a>"],[81.81818181818183,3,"<a href=\"Controller\/CreateTaskController.php.html#31\">AppBundle\\Controller\\CreateTaskController<\/a>"],[83.33333333333334,3,"<a href=\"Controller\/CreateUserController.php.html#32\">AppBundle\\Controller\\CreateUserController<\/a>"],[100,2,"<a href=\"Controller\/DeleteTaskController.php.html#28\">AppBundle\\Controller\\DeleteTaskController<\/a>"],[100,3,"<a href=\"Controller\/EditTaskController.php.html#32\">AppBundle\\Controller\\EditTaskController<\/a>"],[0,3,"<a href=\"Controller\/EditUserController.php.html#33\">AppBundle\\Controller\\EditUserController<\/a>"],[0,2,"<a href=\"Controller\/IndexController.php.html#24\">AppBundle\\Controller\\IndexController<\/a>"],[0,3,"<a href=\"Controller\/SecurityController.php.html#9\">AppBundle\\Controller\\SecurityController<\/a>"],[100,2,"<a href=\"Controller\/ShowAllTasksController.php.html#26\">AppBundle\\Controller\\ShowAllTasksController<\/a>"],[0,4,"<a href=\"Controller\/ShowAllUsersController.php.html#29\">AppBundle\\Controller\\ShowAllUsersController<\/a>"],[0,2,"<a href=\"Controller\/ToggleTaskController.php.html#28\">AppBundle\\Controller\\ToggleTaskController<\/a>"],[100,1,"<a href=\"Form\/DTO\/TaskDTO.php.html#19\">AppBundle\\Form\\DTO\\TaskDTO<\/a>"],[100,1,"<a href=\"Form\/DTO\/UserDTO.php.html#20\">AppBundle\\Form\\DTO\\UserDTO<\/a>"],[46.15384615384615,4,"<a href=\"Form\/Handler\/CreateTaskHandler.php.html#27\">AppBundle\\Form\\Handler\\CreateTaskHandler<\/a>"],[27.77777777777778,4,"<a href=\"Form\/Handler\/CreateUserHandler.php.html#25\">AppBundle\\Form\\Handler\\CreateUserHandler<\/a>"],[100,4,"<a href=\"Form\/Handler\/EditTaskHandler.php.html#23\">AppBundle\\Form\\Handler\\EditTaskHandler<\/a>"],[17.647058823529413,4,"<a href=\"Form\/Handler\/EditUserHandler.php.html#27\">AppBundle\\Form\\Handler\\EditUserHandler<\/a>"],[100,2,"<a href=\"Form\/Type\/TaskType.php.html#12\">AppBundle\\Form\\Type\\TaskType<\/a>"],[68.75,2,"<a href=\"Form\/Type\/UserType.php.html#16\">AppBundle\\Form\\Type\\UserType<\/a>"],[100,5,"<a href=\"Models\/DataFixtures\/ORM\/TasksFixtures.php.html#23\">AppBundle\\Models\\DataFixtures\\ORM\\TasksFixtures<\/a>"],[100,1,"<a href=\"Models\/DataFixtures\/ORM\/UsersFixtures.php.html#22\">AppBundle\\Models\\DataFixtures\\ORM\\UsersFixtures<\/a>"],[100,12,"<a href=\"Models\/Entity\/Task.php.html#12\">AppBundle\\Models\\Entity\\Task<\/a>"],[96.66666666666667,18,"<a href=\"Models\/Entity\/User.php.html#10\">AppBundle\\Models\\Entity\\User<\/a>"],[87.5,6,"<a href=\"Models\/Repository\/TaskRepository.php.html#23\">AppBundle\\Models\\Repository\\TaskRepository<\/a>"],[11.76470588235294,5,"<a href=\"Models\/Repository\/UserRepository.php.html#23\">AppBundle\\Models\\Repository\\UserRepository<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Controller\/CreateTaskController.php.html#59\">AppBundle\\Controller\\CreateTaskController::__construct<\/a>"],[66.66666666666666,2,"<a href=\"Controller\/CreateTaskController.php.html#84\">AppBundle\\Controller\\CreateTaskController::__invoke<\/a>"],[100,1,"<a href=\"Controller\/CreateUserController.php.html#66\">AppBundle\\Controller\\CreateUserController::__construct<\/a>"],[66.66666666666666,2,"<a href=\"Controller\/CreateUserController.php.html#91\">AppBundle\\Controller\\CreateUserController::__invoke<\/a>"],[100,1,"<a href=\"Controller\/DeleteTaskController.php.html#46\">AppBundle\\Controller\\DeleteTaskController::__construct<\/a>"],[100,1,"<a href=\"Controller\/DeleteTaskController.php.html#62\">AppBundle\\Controller\\DeleteTaskController::__invoke<\/a>"],[100,1,"<a href=\"Controller\/EditTaskController.php.html#60\">AppBundle\\Controller\\EditTaskController::__construct<\/a>"],[100,2,"<a href=\"Controller\/EditTaskController.php.html#85\">AppBundle\\Controller\\EditTaskController::__invoke<\/a>"],[0,1,"<a href=\"Controller\/EditUserController.php.html#67\">AppBundle\\Controller\\EditUserController::__construct<\/a>"],[0,2,"<a href=\"Controller\/EditUserController.php.html#93\">AppBundle\\Controller\\EditUserController::__invoke<\/a>"],[0,1,"<a href=\"Controller\/IndexController.php.html#37\">AppBundle\\Controller\\IndexController::__construct<\/a>"],[0,1,"<a href=\"Controller\/IndexController.php.html#51\">AppBundle\\Controller\\IndexController::__invoke<\/a>"],[0,1,"<a href=\"Controller\/SecurityController.php.html#14\">AppBundle\\Controller\\SecurityController::loginAction<\/a>"],[0,1,"<a href=\"Controller\/SecurityController.php.html#30\">AppBundle\\Controller\\SecurityController::loginCheck<\/a>"],[0,1,"<a href=\"Controller\/SecurityController.php.html#38\">AppBundle\\Controller\\SecurityController::logoutCheck<\/a>"],[100,1,"<a href=\"Controller\/ShowAllTasksController.php.html#44\">AppBundle\\Controller\\ShowAllTasksController::__construct<\/a>"],[100,1,"<a href=\"Controller\/ShowAllTasksController.php.html#60\">AppBundle\\Controller\\ShowAllTasksController::__invoke<\/a>"],[0,1,"<a href=\"Controller\/ShowAllUsersController.php.html#58\">AppBundle\\Controller\\ShowAllUsersController::__construct<\/a>"],[0,3,"<a href=\"Controller\/ShowAllUsersController.php.html#80\">AppBundle\\Controller\\ShowAllUsersController::__invoke<\/a>"],[0,1,"<a href=\"Controller\/ToggleTaskController.php.html#46\">AppBundle\\Controller\\ToggleTaskController::__construct<\/a>"],[0,1,"<a href=\"Controller\/ToggleTaskController.php.html#62\">AppBundle\\Controller\\ToggleTaskController::__invoke<\/a>"],[100,1,"<a href=\"Form\/DTO\/TaskDTO.php.html#36\">AppBundle\\Form\\DTO\\TaskDTO::__construct<\/a>"],[100,1,"<a href=\"Form\/DTO\/UserDTO.php.html#47\">AppBundle\\Form\\DTO\\UserDTO::__construct<\/a>"],[100,1,"<a href=\"Form\/Handler\/CreateTaskHandler.php.html#51\">AppBundle\\Form\\Handler\\CreateTaskHandler::__construct<\/a>"],[22.22222222222222,3,"<a href=\"Form\/Handler\/CreateTaskHandler.php.html#65\">AppBundle\\Form\\Handler\\CreateTaskHandler::handle<\/a>"],[100,1,"<a href=\"Form\/Handler\/CreateUserHandler.php.html#42\">AppBundle\\Form\\Handler\\CreateUserHandler::__construct<\/a>"],[13.333333333333334,3,"<a href=\"Form\/Handler\/CreateUserHandler.php.html#61\">AppBundle\\Form\\Handler\\CreateUserHandler::handle<\/a>"],[100,1,"<a href=\"Form\/Handler\/EditTaskHandler.php.html#35\">AppBundle\\Form\\Handler\\EditTaskHandler::__construct<\/a>"],[100,3,"<a href=\"Form\/Handler\/EditTaskHandler.php.html#51\">AppBundle\\Form\\Handler\\EditTaskHandler::handle<\/a>"],[100,1,"<a href=\"Form\/Handler\/EditUserHandler.php.html#44\">AppBundle\\Form\\Handler\\EditUserHandler::__construct<\/a>"],[0,3,"<a href=\"Form\/Handler\/EditUserHandler.php.html#63\">AppBundle\\Form\\Handler\\EditUserHandler::handle<\/a>"],[100,1,"<a href=\"Form\/Type\/TaskType.php.html#14\">AppBundle\\Form\\Type\\TaskType::buildForm<\/a>"],[100,1,"<a href=\"Form\/Type\/TaskType.php.html#26\">AppBundle\\Form\\Type\\TaskType::configureOptions<\/a>"],[100,1,"<a href=\"Form\/Type\/UserType.php.html#18\">AppBundle\\Form\\Type\\UserType::buildForm<\/a>"],[44.44444444444444,1,"<a href=\"Form\/Type\/UserType.php.html#40\">AppBundle\\Form\\Type\\UserType::configureOptions<\/a>"],[100,4,"<a href=\"Models\/DataFixtures\/ORM\/TasksFixtures.php.html#28\">AppBundle\\Models\\DataFixtures\\ORM\\TasksFixtures::load<\/a>"],[100,1,"<a href=\"Models\/DataFixtures\/ORM\/TasksFixtures.php.html#60\">AppBundle\\Models\\DataFixtures\\ORM\\TasksFixtures::getDependencies<\/a>"],[100,1,"<a href=\"Models\/DataFixtures\/ORM\/UsersFixtures.php.html#27\">AppBundle\\Models\\DataFixtures\\ORM\\UsersFixtures::load<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#49\">AppBundle\\Models\\Entity\\Task::__construct<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#62\">AppBundle\\Models\\Entity\\Task::getId<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#70\">AppBundle\\Models\\Entity\\Task::getCreatedAt<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#78\">AppBundle\\Models\\Entity\\Task::setCreatedAt<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#86\">AppBundle\\Models\\Entity\\Task::getTitle<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#94\">AppBundle\\Models\\Entity\\Task::setTitle<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#102\">AppBundle\\Models\\Entity\\Task::getContent<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#110\">AppBundle\\Models\\Entity\\Task::setContent<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#118\">AppBundle\\Models\\Entity\\Task::isDone<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#126\">AppBundle\\Models\\Entity\\Task::toggle<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#134\">AppBundle\\Models\\Entity\\Task::getUser<\/a>"],[100,1,"<a href=\"Models\/Entity\/Task.php.html#142\">AppBundle\\Models\\Entity\\Task::setUser<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#51\">AppBundle\\Models\\Entity\\User::__construct<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#66\">AppBundle\\Models\\Entity\\User::getId<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#74\">AppBundle\\Models\\Entity\\User::getUsername<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#82\">AppBundle\\Models\\Entity\\User::setUsername<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#90\">AppBundle\\Models\\Entity\\User::getSalt<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#98\">AppBundle\\Models\\Entity\\User::getPassword<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#106\">AppBundle\\Models\\Entity\\User::setPassword<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#114\">AppBundle\\Models\\Entity\\User::getEmail<\/a>"],[100,2,"<a href=\"Models\/Entity\/User.php.html#122\">AppBundle\\Models\\Entity\\User::setEmail<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#134\">AppBundle\\Models\\Entity\\User::getRoles<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#142\">AppBundle\\Models\\Entity\\User::getRole<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#150\">AppBundle\\Models\\Entity\\User::setRole<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#158\">AppBundle\\Models\\Entity\\User::eraseCredentials<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#166\">AppBundle\\Models\\Entity\\User::getTasks<\/a>"],[100,1,"<a href=\"Models\/Entity\/User.php.html#174\">AppBundle\\Models\\Entity\\User::addTask<\/a>"],[75,2,"<a href=\"Models\/Entity\/User.php.html#182\">AppBundle\\Models\\Entity\\User::removeTask<\/a>"],[100,1,"<a href=\"Models\/Repository\/TaskRepository.php.html#30\">AppBundle\\Models\\Repository\\TaskRepository::__construct<\/a>"],[100,1,"<a href=\"Models\/Repository\/TaskRepository.php.html#42\">AppBundle\\Models\\Repository\\TaskRepository::findTask<\/a>"],[100,1,"<a href=\"Models\/Repository\/TaskRepository.php.html#55\">AppBundle\\Models\\Repository\\TaskRepository::findAllTasks<\/a>"],[100,1,"<a href=\"Models\/Repository\/TaskRepository.php.html#66\">AppBundle\\Models\\Repository\\TaskRepository::deleteTask<\/a>"],[0,1,"<a href=\"Models\/Repository\/TaskRepository.php.html#83\">AppBundle\\Models\\Repository\\TaskRepository::save<\/a>"],[100,1,"<a href=\"Models\/Repository\/TaskRepository.php.html#93\">AppBundle\\Models\\Repository\\TaskRepository::flush<\/a>"],[100,1,"<a href=\"Models\/Repository\/UserRepository.php.html#30\">AppBundle\\Models\\Repository\\UserRepository::__construct<\/a>"],[0,1,"<a href=\"Models\/Repository\/UserRepository.php.html#41\">AppBundle\\Models\\Repository\\UserRepository::findUser<\/a>"],[0,1,"<a href=\"Models\/Repository\/UserRepository.php.html#54\">AppBundle\\Models\\Repository\\UserRepository::findAllUsers<\/a>"],[0,1,"<a href=\"Models\/Repository\/UserRepository.php.html#68\">AppBundle\\Models\\Repository\\UserRepository::save<\/a>"],[0,1,"<a href=\"Models\/Repository\/UserRepository.php.html#77\">AppBundle\\Models\\Repository\\UserRepository::flush<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

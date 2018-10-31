@@ -95,19 +95,16 @@ class EditUserController
         EditUserHandlerInterface $handler
     ) {
         $user = $this->userRepository->findUser(intval($request->get('id')));
-        $form = $this->formFactory->create(UserType::class);
-        $form->handleRequest($request);
+        $form = $this->formFactory->create(UserType::class, $user)->handleRequest($request);
 
         if ($handler->handle($request, $form)) {
             $request->getSession()->getFlashbag()->add('success', "L'utilisateur a bien été modifié");
 
             return new RedirectResponse($this->urlGenerator->generate('user_list'));
-        } else {
-
+        }
             return new Response($this->twig->render('user/edit.html.twig', [
                 'form' => $form->createView(),
                 'user' => $user
             ]));
-        }
     }
 }

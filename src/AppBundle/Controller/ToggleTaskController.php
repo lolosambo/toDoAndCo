@@ -15,6 +15,7 @@ namespace AppBundle\Controller;
 use AppBundle\Models\Entity\Task;
 use AppBundle\Models\Repository\Interfaces\TaskRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -67,6 +68,6 @@ class ToggleTaskController
 
         $request->getSession()->getFlashBag()->add('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
 
-        return new Response($this->urlGenerator->generate('task_list'));
+        return new RedirectResponse($this->urlGenerator->generate('task_list'));
     }
 }
