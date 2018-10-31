@@ -1,0 +1,26 @@
+# This file is a "template" of what your parameters.yml file should look like
+# Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
+# http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+parameters:
+
+    mailer_transport:  smtp
+    mailer_host:       yourIpAddress
+    mailer_user:       ~
+    mailer_password:   ~
+
+    WORKPATH: /var/www/toDoAndCo
+    COMPOSER_ALLOW_SUPERUSER: 1
+    APP_SECRET: 72e4c82ed7088d4da4209cf01708a279
+    CONTAINER_NAME: toDoAndCo
+    URL_ROOT: http://yourIpAddress:8086/
+    MYSQL_CHARSET: utf8
+    MYSQL_DB: toDoAndCo
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: toDoAndCo
+    MYSQL_USER: yourUsername ### It will be define in your docker environment too
+    MYSQL_PASSWORD: yourPassword ### It will be define in your docker environment too
+    MYSQL_PORT: 3306
+    DB_HOST: mysql
+    DB_DRIVER_DEV: pdo_mysql
+    DB_CHARSET_DEV: utf8
+    DATABASE_URL_DEV: mysql://yourUsername:yourPassword@mysql/toDoAndCo
