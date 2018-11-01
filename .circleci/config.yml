@@ -24,7 +24,7 @@ jobs:
             - run: sudo composer self-update
             - run: sudo docker-php-ext-install pdo_mysql
             - run: sudo docker-php-ext-enable pdo_mysql
-            - run: ../vendor/sensio/distribution-bundle/Resources/bin/build_bootstrap.php var vendor --use-new-directory-structure
+            - run: vendor/sensio/distribution-bundle/Resources/bin/build_bootstrap.php var vendor --use-new-directory-structure
             - restore_cache:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
