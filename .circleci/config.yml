@@ -4,12 +4,18 @@ jobs:
         docker:
             - image: circleci/php:7.2.9-apache-browsers
         environment:
-            DB_DRIVER_DEV: pdo_mysql
-            DB_CHARSET_DEV: utf8
-            DB_HOST: 127.0.0.1
+            URL_ROOT: 'http://172.18.0.1:8086/'
+            MYSQL_CHARSET: utf8
+            MYSQL_DB: toDoAndCo
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: toDoAndCo
             MYSQL_USER: lolo
             MYSQL_PASSWORD: test
-            MYSQL_ROOT_PASSWORD: root
+            MYSQL_PORT: 3306
+            DB_HOST: mysql
+            DB_DRIVER_DEV: pdo_mysql
+            DB_CHARSET_DEV: utf8
+            DATABASE_URL_DEV: 'mysql://lolo:test@mysql/toDoAndCo'
 
         steps:
             - checkout
