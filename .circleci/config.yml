@@ -4,9 +4,8 @@ jobs:
         docker:
             - image: circleci/php:7.2.9-apache-browsers
         environment:
-            DB_DRIVER_DEV: pdo_pgsql
+            DB_DRIVER_DEV: pdo_mysql
             DB_CHARSET_DEV: utf8
-            DB_VERSION_DEV: 9.6
         steps:
             - checkout
             - run: echo 'Hello World'
@@ -26,7 +25,7 @@ jobs:
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: ./bin/console d:f:l --env=test -n
-            - run: ./bin/phpunit -v --group unit
+            - run: ./vendor/bin/phpunit -v --group unit
 workflows:
     version: 2
     unit_test:
