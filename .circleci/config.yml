@@ -14,7 +14,6 @@ jobs:
             MYSQL_PORT: 3306
             DB_HOST: mysql
             MYSQL_DRIVER: pdo_mysql
-            MYSQL_CHARSET: utf8
             DATABASE_URL: 'mysql://lolo:test@mysql/toDoAndCo'
 
         steps:
