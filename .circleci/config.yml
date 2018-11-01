@@ -2,7 +2,7 @@ version: 2
 jobs:
     phpunit:
         docker:
-            - image: circleci/php:7.2.9-apache-browsers
+            - image: pensiero/apache-php-mysql
         environment:
             DB_DRIVER_DEV: pdo_mysql
             DB_CHARSET_DEV: utf8
