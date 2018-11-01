@@ -17,10 +17,10 @@ parameters:
     MYSQL_DB: toDoAndCo
     MYSQL_ROOT_PASSWORD: root
     MYSQL_DATABASE: toDoAndCo
-    MYSQL_USER: yourUsername ### It will be define in your docker environment too
-    MYSQL_PASSWORD: yourPassword ### It will be define in your docker environment too
+    MYSQL_USER: lolo ###
+    MYSQL_PASSWORD: test ###
     MYSQL_PORT: 3306
     DB_HOST: mysql
     DB_DRIVER_DEV: pdo_mysql
     DB_CHARSET_DEV: utf8
-    DATABASE_URL_DEV: mysql://yourUsername:yourPassword@mysql/toDoAndCo
+    DATABASE_URL_DEV: mysql://lolo:test@mysql/toDoAndCo
