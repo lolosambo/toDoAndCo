@@ -2,7 +2,7 @@ version: 2
 jobs:
     phpunit:
         docker:
-            - image: pensiero/apache-php-mysql
+            - image: circleci/php:7.2.9-apache-browsers
         environment:
             DB_DRIVER_DEV: pdo_mysql
             DB_CHARSET_DEV: utf8
@@ -12,6 +12,8 @@ jobs:
             - run: sudo apt install -y libsqlite3-dev zlib1g-dev
             - run: sudo docker-php-ext-install zip
             - run: sudo composer self-update
+            - run: sudo docker-php-ext-install pdo_mysql
+            - run: sudo docker-php-ext-enable pdo_mysql
             - restore_cache:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
