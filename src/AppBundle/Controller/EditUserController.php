@@ -22,6 +22,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Twig\Environment;
 
@@ -57,35 +58,46 @@ class EditUserController
      */
     private $passEncoder;
 
+    /**
+     * @var TokenStorageInterface
+     */
+    private $token;
 
     /**
      * EditUserController constructor.
      *
-     * @param UserRepositoryInterface $
-     * @param $taskRepository
+     * @param UserRepositoryInterface $userRepository
+     * @param Environment $twig
+     * @param FormFactoryInterface $formFactory
+     * @param UrlGeneratorInterface $urlGenerator
+     * @param UserPasswordEncoderInterface $passEncoder
+     * @param TokenStorageInterface $token
      */
     public function __construct(
         UserRepositoryInterface $userRepository,
         Environment $twig,
         FormFactoryInterface $formFactory,
         UrlGeneratorInterface $urlGenerator,
-        UserPasswordEncoderInterface $passEncoder
+        UserPasswordEncoderInterface $passEncoder,
+        TokenStorageInterface $token
     ) {
         $this->userRepository = $userRepository;
         $this->twig = $twig;
         $this->formFactory = $formFactory;
         $this->urlGenerator = $urlGenerator;
         $this->passEncoder = $passEncoder;
+        $this->token = $token;
     }
 
     /**
      * @Route("/users/{id}/edit", name="user_edit")
      *
-     * @param User $user
      * @param Request $request
+     * @param EditUserHandlerInterface $handler
      *
-     * @return string
+     * @return RedirectResponse|Response
      *
+     * @throws \Exception
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -94,8 +106,12 @@ class EditUserController
         Request $request,
         EditUserHandlerInterface $handler
     ) {
+        $this->token->getToken()->getUser();
+        if(($this->token->getToken()->getUser() === "anon.") || ($this->token->getToken()->getUser()->getRole() === "ROLE_USER")){
+            return new RedirectResponse($this->urlGenerator->generate('login'));
+        }
         $user = $this->userRepository->findUser(intval($request->get('id')));
-        $form = $this->formFactory->create(UserType::class, $user)->handleRequest($request);
+        $form = $this->formFactory->create(UserType::class)->handleRequest($request);
 
         if ($handler->handle($request, $form)) {
             $request->getSession()->getFlashbag()->add('success', "L'utilisateur a bien été modifié");

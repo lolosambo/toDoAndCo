@@ -65,7 +65,6 @@ class ToggleTaskController
     ) {
         $task->toggle(!$task->isDone());
         $this->taskRepository->save($task);
-
         $request->getSession()->getFlashBag()->add('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
 
         return new RedirectResponse($this->urlGenerator->generate('task_list'));

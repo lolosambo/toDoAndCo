@@ -84,7 +84,15 @@ class ShowAllUsersController
             $request->getSession()->getFlashBag()->add('error', "Petit malin ! Vous n'avez pas accès à cette fonction !");
             return new RedirectResponse($this->urlGenerator->generate('login'));
         }
-        return new Response($this->twig->render('user/list.html.twig', ['users' => $this->userRepository->findAllUsers()]));
+        $response = new Response($this->twig->render('user/list.html.twig', [
+            'users' => $this->userRepository->findAllUsers()
+            ]
+        ));
+        $response->setEtag(md5($response->getContent()));
+        $response->setPublic();
+        if($response->isNotModified($request)) {
+            return $response;
+        }
+        return $response;
     }
-
 }

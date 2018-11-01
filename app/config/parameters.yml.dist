@@ -24,3 +24,4 @@ parameters:
     DB_DRIVER_DEV: pdo_mysql
     DB_CHARSET_DEV: utf8
     DATABASE_URL_DEV: mysql://yourUsername:yourPassword@mysql/toDoAndCo
+    REDIS_URL: redis://localhost

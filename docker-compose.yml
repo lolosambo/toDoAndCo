@@ -34,23 +34,23 @@ services:
         restart: always
 
     # VARNISH
-#    varnish:
-#        container_name: toDoAndCo_varnish
-#        image: emgag/varnish:6.0
-#        volumes:
-#            - './docker/varnish:/etc/varnish:rw'
-#        ports:
-#            - "8082:80"
+    varnish:
+        container_name: toDoAndCo_varnish
+        image: emgag/varnish:6.0
+        volumes:
+            - './docker/varnish:/etc/varnish:rw'
+        ports:
+            - "8082:80"
 
     # Server optimization
-#    redis:
-#        container_name: toDoAndCo_redis
-#        image: redis:alpine
-#        ports:
-#            - '6380:6379'
-#        links:
-#            - php-fpm
-#        restart: always
+    redis:
+        container_name: toDoAndCo_redis
+        image: redis:alpine
+        ports:
+            - '6380:6379'
+        links:
+            - php-fpm
+        restart: always
 
     mysql:
         image: mysql:5.7
