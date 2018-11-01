@@ -13,9 +13,9 @@ jobs:
             MYSQL_PASSWORD: test
             MYSQL_PORT: 3306
             DB_HOST: mysql
-            DB_DRIVER_DEV: pdo_mysql
-            DB_CHARSET_DEV: utf8
-            DATABASE_URL_DEV: 'mysql://lolo:test@mysql/toDoAndCo'
+            MYSQL_DRIVER: pdo_mysql
+            MYSQL_CHARSET: utf8
+            DATABASE_URL: 'mysql://lolo:test@mysql/toDoAndCo'
 
         steps:
             - checkout
