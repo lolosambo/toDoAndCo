@@ -6,7 +6,7 @@ jobs:
         environment:
             DB_DRIVER_DEV: pdo_mysql
             DB_CHARSET_DEV: utf8
-            DB_HOST: mysql
+            DB_HOST: 127.0.0.1
             MYSQL_USER: lolo
             MYSQL_PASSWORD: test
             MYSQL_ROOT_PASSWORD: root
