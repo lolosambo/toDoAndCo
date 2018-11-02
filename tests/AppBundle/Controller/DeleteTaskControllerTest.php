@@ -31,13 +31,13 @@ class DeleteTaskControllerTest extends WebTestCase
     public function setUp()
     {
         $this->client = static::createClient();
-        $em = static::$kernel->getContainer()->get('doctrine')->getManager();
+        $entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
         $productsFixtures = new TasksFixtures();
         $loader = new Loader();
         $loader->addFixture($productsFixtures);
-        $purger = new ORMPurger($em);
+        $purger = new ORMPurger($entityManager);
         $executor = new ORMExecutor(
-            $em,
+            $entityManager,
             $purger
         );
         $executor->execute($loader->getFixtures());
@@ -87,7 +87,7 @@ class DeleteTaskControllerTest extends WebTestCase
     public function testDeleteTaskAsAdminAction()
     {
         $this->logInAs('toDoAdmin');
-        $task = $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(Task::class)->findAll()[0];
+        $task = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(Task::class)->findAll()[0];
         $this->client->request('GET', 'tasks/'. $task->getId() .'/delete');
         $response = $this->client->getResponse();
         $this->assertSame(302, $response->getStatusCode());

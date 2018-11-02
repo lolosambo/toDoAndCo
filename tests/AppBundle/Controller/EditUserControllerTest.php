@@ -30,13 +30,13 @@ class EditUserControllerTest extends WebTestCase
     public function setUp()
     {
         $this->client = static::createClient();
-        $em = static::$kernel->getContainer()->get('doctrine')->getManager();
+        $entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
         $productsFixtures = new UsersFixtures();
         $loader = new Loader();
         $loader->addFixture($productsFixtures);
-        $purger = new ORMPurger($em);
+        $purger = new ORMPurger($entityManager);
         $executor = new ORMExecutor(
-            $em,
+            $entityManager,
             $purger
         );
         $executor->execute($loader->getFixtures());

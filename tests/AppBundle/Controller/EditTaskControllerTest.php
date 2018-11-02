@@ -31,13 +31,13 @@ class EditTaskControllerTest extends WebTestCase
     public function setUp()
     {
         $this->client = static::createClient();
-        $em = static::$kernel->getContainer()->get('doctrine')->getManager();
+        $entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
         $productsFixtures = new TasksFixtures();
         $loader = new Loader();
         $loader->addFixture($productsFixtures);
-        $purger = new ORMPurger($em);
+        $purger = new ORMPurger($entityManager);
         $executor = new ORMExecutor(
-            $em,
+            $entityManager,
             $purger
         );
         $executor->execute($loader->getFixtures());
@@ -60,7 +60,7 @@ class EditTaskControllerTest extends WebTestCase
     public function testEditTaskAction()
     {
         $this->logInAs('toDoUser');
-        $task = $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(Task::class)->findAll()[0];
+        $task = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(Task::class)->findAll()[0];
         $crawler = $this->client->request('GET', 'tasks/'. $task->getId() .'/edit');
         $form = $crawler->selectButton('Modifier')->form();
         $form['task[title]'] = 'Modified Task';
