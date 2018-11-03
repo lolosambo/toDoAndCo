@@ -35,6 +35,7 @@ jobs:
                 paths:
                     - vendor
             - run: cp app/config/parameters.yml.dist app/config/parameters.yml
+            - run: ./bin/console d:d:d --env=test
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: ./bin/console d:f:l --env=test -n
