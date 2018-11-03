@@ -59,10 +59,9 @@ class CreateTaskControllerTest extends WebTestCase
      */
     public function testCreateTaskAction()
     {
-        $this->logInAs('toDoUser');
+        $this->logInAs('toDoAdmin');
         $crawler = $this->client->request('GET', '/tasks/create');
-        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertSame(1, $crawler->filter('html:contains("Se connecter")')->count());
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     }
 
 }

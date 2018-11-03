@@ -61,7 +61,7 @@ class EditUserControllerTest extends WebTestCase
         $this->logInAs('toDoUser');
         $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneByUsername('AnonymousUser');
         $crawler = $this->client->request('GET', 'users/'. $user->getId() .'/edit');
-        $form = $crawler->selectButton('modify')->form();
+        $form = $crawler->selectButton('Modifier')->form();
         $form['user[username]'] = $user->getUsername();
         $form['user[password][first]'] = 'anotherPassword';
         $form['user[password][second]'] = 'anotherPassword';

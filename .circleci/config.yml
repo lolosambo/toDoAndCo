@@ -34,6 +34,7 @@ jobs:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
+            - run: cp app/config/parameter.yml.dist app/config/parameter.yml
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: ./bin/console d:f:l --env=test -n
