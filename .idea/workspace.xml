@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="459cf017-8439-4471-a5a4-b657f8bba420" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/docker/nginx/logs/sfp_prod_access.log" afterPath="$PROJECT_DIR$/docker/nginx/logs/sfp_prod_access.log" />
-      <change beforePath="$PROJECT_DIR$/tests/AppBundle/Controller/DeleteTaskControllerTest.php" afterPath="$PROJECT_DIR$/tests/AppBundle/Controller/DeleteTaskControllerTest.php" />
-      <change beforePath="$PROJECT_DIR$/tests/AppBundle/Controller/EditTaskControllerTest.php" afterPath="$PROJECT_DIR$/tests/AppBundle/Controller/EditTaskControllerTest.php" />
-      <change beforePath="$PROJECT_DIR$/tests/AppBundle/Controller/EditUserControllerTest.php" afterPath="$PROJECT_DIR$/tests/AppBundle/Controller/EditUserControllerTest.php" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/vendor/sensio/distribution-bundle/Composer/ScriptHandler.php" afterPath="$PROJECT_DIR$/vendor/sensio/distribution-bundle/Composer/ScriptHandler.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -145,11 +142,11 @@
       <file leaf-file-name="ScriptHandler.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vendor/sensio/distribution-bundle/Composer/ScriptHandler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="367" column="35" lean-forward="false" selection-start-line="367" selection-start-column="35" selection-end-line="367" selection-end-column="35" />
+            <state relative-caret-position="506">
+              <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
               <folding>
-                <marker date="1541193481000" expanded="true" signature="12852:12942" ph="..." />
-                <marker date="1541193481000" expanded="true" signature="12996:13061" ph="..." />
+                <marker date="1541230525000" expanded="true" signature="12854:12944" ph="..." />
+                <marker date="1541230525000" expanded="true" signature="12998:13063" ph="..." />
               </folding>
             </state>
           </provider>
@@ -189,6 +186,8 @@
       <find>var-dump</find>
       <find>wordpress</find>
       <find>em</find>
+      <find>$binDir</find>
+      <find>console</find>
     </findStrings>
     <replaceStrings>
       <replace>Task</replace>
@@ -268,8 +267,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="23" />
-    <option name="y" value="23" />
+    <option name="x" value="11" />
+    <option name="y" value="41" />
     <option name="width" value="2560" />
     <option name="height" value="1356" />
   </component>
@@ -522,15 +521,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539412872571</updated>
-      <workItem from="1539412874253" duration="155420000" />
+      <workItem from="1539412874253" duration="156742000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155420000" />
+    <option name="totallyTimeSpent" value="156742000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="23" width="2560" height="1356" extended-state="0" />
+    <frame x="11" y="41" width="2560" height="1356" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15111643" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -974,11 +973,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/sensio/distribution-bundle/Composer/ScriptHandler.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="367" column="35" lean-forward="false" selection-start-line="367" selection-start-column="35" selection-end-line="367" selection-end-column="35" />
+        <state relative-caret-position="506">
+          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding>
-            <marker date="1541193481000" expanded="true" signature="12852:12942" ph="..." />
-            <marker date="1541193481000" expanded="true" signature="12996:13061" ph="..." />
+            <marker date="1541230525000" expanded="true" signature="12854:12944" ph="..." />
+            <marker date="1541230525000" expanded="true" signature="12998:13063" ph="..." />
           </folding>
         </state>
       </provider>
