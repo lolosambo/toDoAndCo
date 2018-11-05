@@ -40,6 +40,7 @@ jobs:
             - run: ./bin/console d:s:c --env=test
             - run: ./bin/console d:f:l --env=test -n
             - run: ./vendor/bin/phpunit -v --group unit
+            - run: ./vendor/bin/phpunit -v --group functional
 workflows:
     version: 2
     unit_test:
