@@ -3,6 +3,7 @@
 namespace AppBundle\Models\Entity\Interfaces;
 
 use AppBundle\Models\Entity\Task;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Interface UserInterface
@@ -60,15 +61,11 @@ interface UserInterface
     /**
      * @return array
      */
-    public function getTasks(): array;
+    public function getTasks();
 
     /**
      * @param Task $task
      */
-    public function addTask(Task $task): void;
-    /**
-     * @param Task $task
-     */
-    public function removeTask(Task $task): void;
+    public function addTask(Task $task);
 
 }

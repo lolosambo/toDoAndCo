@@ -17,6 +17,9 @@ use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
@@ -28,16 +31,18 @@ class EditTaskControllerTest extends WebTestCase
 {
     private $client;
 
+    private $entityManager;
+
     public function setUp()
     {
         $this->client = static::createClient();
-        $entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
+        $this->entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
         $productsFixtures = new TasksFixtures();
         $loader = new Loader();
         $loader->addFixture($productsFixtures);
-        $purger = new ORMPurger($entityManager);
+        $purger = new ORMPurger($this->entityManager);
         $executor = new ORMExecutor(
-            $entityManager,
+            $this->entityManager,
             $purger
         );
         $executor->execute($loader->getFixtures());
@@ -51,24 +56,62 @@ class EditTaskControllerTest extends WebTestCase
         $token = new UsernamePasswordToken($user, $user->getPassword(), $firewallContext, $user->getRoles());
         $session->set('_security_'.$firewallContext, serialize($token));
         $session->save();
+        $cookie = new Cookie($session->getName(), $session->getId());
+        $this->client->getCookieJar()->set($cookie);
         return $user;
     }
 
     /**
-     * @group unit
+     * @group functional
      */
-    public function testEditTaskAction()
+    public function testEditTaskActionAsAdmin()
     {
-        $this->logInAs('toDoUser');
-        $task = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(Task::class)->findAll()[0];
+        $admin = $this->logInAs('toDoAdmin');
+        $task = new Task('testTitle', 'Some content');
+        $task->setUser($admin);
+        $this->entityManager->persist($task);
+        $this->entityManager->flush();
         $crawler = $this->client->request('GET', 'tasks/'. $task->getId() .'/edit');
         $form = $crawler->selectButton('Modifier')->form();
-        $form['task[title]'] = 'Modified Task';
-        $form['task[content]'] = 'Content for new modified Task';
+        $form['task[title]'] = 'Test Title';
+        $form['task[content]'] = 'Some content';
         $this->client->submit($form);
+        static::assertEquals(302, $this->client->getResponse()->getStatusCode());
         $crawler = $this->client->followRedirect();
-        $this->assertSame(1, $crawler->filter('div.alert.alert-success')->count());
-        $this->assertGreaterThan(0, $crawler->filter('div:contains("La tâche a bien été modifiée.")')->count());
+        static::assertEquals(200, $this->client->getResponse()->getStatusCode());
+        static::assertSame(1, $crawler->filter('html:contains("La tâche a bien été modifiée")')->count());
+    }
+
+    /**
+     * @group functional
+     */
+    public function testEditTaskActionAsUser()
+    {
+        $admin = $this->logInAs('toDoUser');
+        $task = new Task('testTitle', 'Some content');
+        $task->setUser($admin);
+        $this->entityManager->persist($task);
+        $this->entityManager->flush();
+        $crawler = $this->client->request('GET', 'tasks/'. $task->getId() .'/edit');
+        $form = $crawler->selectButton('Modifier')->form();
+        $form['task[title]'] = 'Test Title';
+        $form['task[content]'] = 'Some content';
+        $this->client->submit($form);
+        static::assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $crawler = $this->client->followRedirect();
+        static::assertEquals(200, $this->client->getResponse()->getStatusCode());
+        static::assertSame(1, $crawler->filter('html:contains("La tâche a bien été modifiée")')->count());
+    }
+
+    /**
+     * @group functional
+     */
+    public function testEditTaskActionAsAnonyme()
+    {
+        $this->client->request('GET', 'tasks/1/edit');
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $crawler = $this->client->followRedirect();
+        $this->assertInstanceOf(Response::class, $this->client->getResponse());
     }
 
 }

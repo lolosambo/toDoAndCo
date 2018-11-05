@@ -9,16 +9,19 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 namespace Tests\Controller;
-use AppBundle\Form\Handler\CreateUserHandler;
-use AppBundle\Controller\CreateUserController;
-use AppBundle\Models\Repository\Interfaces\UserRepositoryInterface;
+
+use AppBundle\Models\DataFixtures\ORM\TasksFixtures;
+use AppBundle\Models\DataFixtures\ORM\UsersFixtures;
+use AppBundle\Models\Entity\Task;
+use AppBundle\Models\Entity\User;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+use Doctrine\Common\DataFixtures\Loader;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Twig\Environment;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+
 /**
  * Class CreateUserControllerTest
  *
@@ -26,62 +29,70 @@ use Twig\Environment;
  */
 class CreateUserControllerTest extends WebTestCase
 {
-    protected static $container;
-    private $factory;
-    private $handler;
-    private $repository;
-    private $encoder;
-    private $generator;
-    private $twig;
+    private $client;
+
+    private $entityManager;
 
     public function setUp()
     {
-        static::bootKernel();
-        self::$container = static::$kernel->getContainer();
+        $this->client = static::createClient();
+        $this->entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
+        $usersFixtures = new UsersFixtures();
+        $loader = new Loader();
+        $loader->addFixture($usersFixtures);
+        $purger = new ORMPurger($this->entityManager);
+        $executor = new ORMExecutor(
+            $this->entityManager,
+            $purger
+        );
+        $executor->execute($loader->getFixtures());
+    }
 
-        $this->factory = self::$container->get('form.factory');
-        $this->twig = $this->createMock(Environment::class);
-        $this->repository = $this->createMock(UserRepositoryInterface::class);
-        $this->encoder = $this->createMock(UserPasswordEncoderInterface::class);
-        $this->generator = $this->createMock(UrlGeneratorInterface::class);
-        $this->handler = new CreateUserhandler($this->repository, $this->encoder);
+    public function logInAs($username)
+    {
+        $session = $this->client->getContainer()->get('session');
+        $firewallContext = 'main';
+        $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneByUsername($username);
+        $token = new UsernamePasswordToken($user, $user->getPassword(), $firewallContext, $user->getRoles());
+        $session->set('_security_'.$firewallContext, serialize($token));
+        $session->save();
+        $cookie = new Cookie($session->getName(), $session->getId());
+        $this->client->getCookieJar()->set($cookie);
+        return $user;
     }
 
     /**
-     * @group unit
+     * @group functional
+     * @covers CreateUserHandler::handle
      */
-    public function test_construct()
+    public function testCreateUserAsAdmin()
     {
-        $action = new CreateUserController($this->repository, $this->twig, $this->factory, $this->generator, $this->encoder);
-        static::assertInstanceOf(CreateUserController::class, $action);
+        $this->logInAs('toDoAdmin');
+        $crawler = $this->client->request('GET', '/users/create');
+        $form = $crawler->selectButton('Ajouter')->form();
+        $form['user[username]'] = 'UserTest';
+        $form['user[password][first]'] = 'SomePassword';
+        $form['user[password][second]'] = 'SomePassword';
+        $form['user[email]'] = 'UserTest@user.com';
+        $form['user[role]'] = 'ROLE_USER';
+        $this->client->submit($form);
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $crawler = $this->client->followRedirect();
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertSame(1, $crawler->filter('html:contains("Superbe ! L\'utilisateur a bien été ajouté. Vous pouvez maintenant vous connecter.")')->count());
+        $this->assertInstanceOf(Response::class, $this->client->getResponse());
     }
 
     /**
-     * @group unit
-     *
-     * @covers CreateUserController::__invoke
-     *
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * @group functional
      */
-    public function testCreateUserAction()
+    public function testCreateUserAsUser()
     {
-        $request= Request::create(
-            '/users/create',
-            'POST'
-        );
-        $action = new CreateUserController(
-            $this->repository,
-            $this->twig,
-            $this->factory,
-            $this->generator,
-            $this->encoder
-        );
-        $result = $action(
-            $request,
-            $this->handler
-        );
-        static::assertInstanceOf(Response::class, $result);
+        $this->logInAs('toDoUser');
+        $crawler = $this->client->request('GET', '/users/create');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        $this->assertSame(1, $crawler->filter('html:contains("Créer un utilisateur")')->count());
+        $this->assertInstanceOf(Response::class, $this->client->getResponse());
     }
+
 }

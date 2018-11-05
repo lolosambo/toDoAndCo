@@ -33,7 +33,7 @@ class TaskType extends AbstractType
                     $form->get('content')->getData()
                 );
             },
-            'validation_groups' => ['task_create'],
+            'validation_groups' => ['Task'],
         ]);
     }
 }

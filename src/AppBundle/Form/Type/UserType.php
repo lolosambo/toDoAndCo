@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\Type;
 
+use AppBundle\Models\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -49,7 +50,7 @@ class UserType extends AbstractType
                     $form->get('role')->getData()
                 );
             },
-            'validation_groups' => ['user'],
+            'validation_groups' => ['User']
         ]);
     }
 }

@@ -12,6 +12,7 @@ namespace Tests\AppBundle\Models;
 
 use AppBundle\Models\Entity\Task;
 use AppBundle\Models\Entity\User;
+use Doctrine\Common\Collections\Collection;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -158,6 +159,8 @@ class UserTest extends TestCase
      */
     public function testUserMustHaveValidTasks()
     {
+        $task = new Task('testTitle', 'TestContent');
+        $this->user->addTask($task);
         static::assertInternalType('array', $this->user->getTasks());
     }
 
@@ -203,19 +206,6 @@ class UserTest extends TestCase
         $this->user->addTask($task);
         static::assertCount(1, $this->user->getTasks());
     }
-
-    /**
-     * @group unit
-     *
-     * @covers User::addTask
-     */
-    public function testUserShouldBeAbleToRemoveATask()
-    {
-        $task = new Task('testTitle', 'TestContent');
-        $this->user->removeTask($task);
-        static::assertCount(0, $this->user->getTasks());
-    }
-
 
     /**
      * @group unit

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Models\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -25,7 +26,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @var string
+     * @var null|string
      */
     private $email;
 
@@ -35,9 +36,9 @@ class User implements UserInterface
     private $role;
 
     /**
-     * @var array Task
+     * @var array
      */
-    private $tasks = [];
+    private $tasks;
 
 
     /**
@@ -163,7 +164,7 @@ class User implements UserInterface
     /**
      * @return array
      */
-    public function getTasks(): array
+    public function getTasks()
     {
         return $this->tasks;
     }
@@ -171,19 +172,11 @@ class User implements UserInterface
     /**
      * @param Task $task
      */
-    public function addTask(Task $task): void
+    public function addTask(Task $task)
     {
         $this->tasks[] = $task;
+        $task->setUser($this);
+        return $this;
     }
 
-    /**
-     * @param Task $task
-     */
-    public function removeTask(Task $task): void
-    {
-        $index = array_search($task, $this->getTasks());
-        if($index !== false){
-            unset($this->getTasks()[$index]);
-        }
-    }
 }

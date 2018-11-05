@@ -1,0 +1,38 @@
+AppBundle\Form\DTO\UserDTO:
+    properties:
+        username:
+            - NotBlank: ~
+            - Length:
+                min: 6
+                minMessage: 'Le pseudo doit contenir au moins 6 caractères'
+                groups: ['User']
+        password:
+            - NotBlank: ~
+            - Length:
+                min: 8
+                max: 50
+                minMessage: 'Le mot de passe doit contenir au moins 8 caractères'
+                groups: ['User']
+        email:
+            - Email:
+                checkMX: true
+                message: 'Addresse mail "{{ value }}" non valide'
+                groups: ['User']
+
+
+AppBundle\Form\DTO\UserDTO:
+    properties:
+        title:
+            - NotBlank: ~
+            - Length:
+                max: 100
+                maxMessage : 'Le titre ne peut contenir plus de 100 caractères'
+                groups: ['Task']
+
+        content:
+            - NotBlank: ~
+            - Length:
+                min: 8
+                max: 255
+                maxMessage : 'Le contenu ne doit pas dépasser 255 caractères'
+                groups: ['Task']

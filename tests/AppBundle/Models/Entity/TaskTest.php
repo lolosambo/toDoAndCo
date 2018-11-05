@@ -139,7 +139,7 @@ class TaskTest extends TestCase
      */
     public function testTaskShouldBeAbleToToogleAtask()
     {
-        $this->task->toogle(1);
+        $this->task->toggle(1);
         static::assertEquals(1, $this->task->isDone());
     }
 

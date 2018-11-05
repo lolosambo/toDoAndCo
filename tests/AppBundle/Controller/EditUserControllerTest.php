@@ -16,6 +16,9 @@ use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
@@ -26,17 +29,18 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 class EditUserControllerTest extends WebTestCase
 {
     private $client;
+    private $entityManager;
 
     public function setUp()
     {
         $this->client = static::createClient();
-        $entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
-        $productsFixtures = new UsersFixtures();
+        $this->entityManager = static::$kernel->getContainer()->get('doctrine')->getManager();
+        $UsersFixtures = new UsersFixtures();
         $loader = new Loader();
-        $loader->addFixture($productsFixtures);
-        $purger = new ORMPurger($entityManager);
+        $loader->addFixture($UsersFixtures);
+        $purger = new ORMPurger($this->entityManager);
         $executor = new ORMExecutor(
-            $entityManager,
+            $this->entityManager,
             $purger
         );
         $executor->execute($loader->getFixtures());
@@ -50,27 +54,49 @@ class EditUserControllerTest extends WebTestCase
         $token = new UsernamePasswordToken($user, $user->getPassword(), $firewallContext, $user->getRoles());
         $session->set('_security_'.$firewallContext, serialize($token));
         $session->save();
+        $cookie = new Cookie($session->getName(), $session->getId());
+        $this->client->getCookieJar()->set($cookie);
         return $user;
     }
 
     /**
-     * @group unit
+     * @group functional
      */
-    public function testEditUserAction()
+    public function testEditUserActionAsAdmin()
+    {
+        $this->logInAs('toDoAdmin');
+        $user = new User('testUserUsername', 'TestPassword', "test@test.com", "ROLE_ADMIN");
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+        $crawler = $this->client->request('GET', '/users/'.$user->getId().'/edit');
+        $form = $crawler->selectButton('Modifier')->form();
+        $form['user[username]'] = 'UserTest';
+        $form['user[password][first]'] = 'SomePassword';
+        $form['user[password][second]'] = 'SomePassword';
+        $form['user[email]'] = 'UserTest@user.com';
+        $form['user[role]'] = 'ROLE_USER';
+        $this->client->submit($form);
+        static::assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $crawler = $this->client->followRedirect();
+        static::assertEquals(200, $this->client->getResponse()->getStatusCode());
+        static::assertSame(1, $crawler->filter('html:contains("L\'utilisateur a bien été modifié")')->count());
+    }
+
+    /**
+     * @group functional
+     */
+    public function testEditUserActionAsUser()
     {
         $this->logInAs('toDoUser');
-        $user = $this->client->getContainer()->get('doctrine')->getManager()->getRepository(User::class)->findOneByUsername('AnonymousUser');
-        $crawler = $this->client->request('GET', 'users/'. $user->getId() .'/edit');
-        $form = $crawler->selectButton('Modifier')->form();
-        $form['user[username]'] = $user->getUsername();
-        $form['user[password][first]'] = 'anotherPassword';
-        $form['user[password][second]'] = 'anotherPassword';
-        $form['user[email]'] = $user->getEmail();
-        $form['user[role]'] = $user->getRole();
-        $this->client->submit($form);
-        $crawler = $this->client->followRedirect();
-        $this->assertSame(1, $crawler->filter('div.alert.alert-success')->count());
-        $this->assertGreaterThan(0, $crawler->filter('div:contains("L\'utilisateur a bien été modifié.")')->count());
+        $user = new User('testUser', 'ACertainPassword', 'user@user.com', 'ROLE_USER');
+        $passwordEncoder = $this->client->getContainer()->get('security.password_encoder');
+        $passwordEncode = $passwordEncoder->encodePassword($user, 'password');
+        $user->setPassword($passwordEncode);
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+        $this->client->request('GET', 'users/'. $user->getId() .'/edit');
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
+        $this->assertInstanceOf(RedirectResponse::class, $this->client->getResponse());
     }
 
 }

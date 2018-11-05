@@ -81,9 +81,11 @@ class CreateUserController
      * @Route("/users/create", name="user_create")
      *
      * @param Request $request
+     * @param CreateUserHandlerInterface $handler
      *
-     * @return string
+     * @return RedirectResponse|Response
      *
+     * @throws \Exception
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
