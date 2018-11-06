@@ -3,7 +3,8 @@ ToDoListApp
 
 In order to install the ToDoListApp Project, you have to follow these indications : 
 
-## Prepare your environment
+Prepare your environment
+------------------------
 
 - First, you need to install git, Composer and Docker
 
@@ -24,11 +25,13 @@ Copy and paste the following line on your terminal (or console) :
 git clone https://github.com/lolosambo/toDoAndCo.git
 ```
 
-## Define your Environment Variables
+Define your Environment Variables
+---------------------------------
 
 Simply, turn the `app/config/parameters.yml.dist` into `parameters.yml` and change each variable value as you wish.
 
-## Install your docker environment
+Install your docker environment
+-------------------------------
 
 Your Dockerfile, docker-compose.yaml files and all the base configuration are ready to use. All you have to do is write :
 ```
@@ -36,7 +39,8 @@ docker-compose build
 docker-compose up -d
 ```
 
-## Composer to the rescue !
+Composer to the rescue
+----------------------
 
 Install all dependencies with composer with these lines :
 ```
@@ -46,7 +50,8 @@ make autoload
 
 A `Makefile` gives you a lot of shortcuts for Symfony, Composer, Doctrine, PhpUnit and BlackFire most used commands
 
-## Configure your database and make fixtures
+Configure your database and make fixtures
+-----------------------------------------
 
 First create your database
 ```
