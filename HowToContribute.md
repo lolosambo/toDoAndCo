@@ -1,15 +1,18 @@
-# ToDoAndCo - How to contribute
+ToDoAndCo - How to contribute
+=============================
 
 Improve an existing Symfony application of ToDoAndCo.
 It is an application to manage daily tasks.
 
 To contribute to this project, follow the steps below.
 
-## Step 1 - Clone or pull the project 
+Step 1 - Clone or pull the project 
+----------------------------------
 
 You can do thi by clicking on the clone or download button on the top right of repository homepage
 
-## Step 2 - Work on the project
+Step 2 - Work on the project
+----------------------------
 
 1. 	Install the project by referring to README.md.
 
@@ -42,7 +45,8 @@ You can do thi by clicking on the clone or download button on the top right of r
 	This will create this branch on your GitHub project.
 
 
-## Step 3 - Propose your changes to the project
+Step 3 - Propose your changes to the project
+--------------------------------------------
 
 #### 1. 	Create a Pull Request
 
@@ -78,7 +82,8 @@ Notice here you’re pushing to the remote named origin.
 
 
 
-## Making your Code Follow the Good Practices
+Making your Code Follow the Good Practices
+------------------------------------------
 
 #### 1. 	Coding Standards
 
