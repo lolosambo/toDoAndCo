@@ -6,7 +6,7 @@ In order to install the ToDoListApp Project, you have to follow these indication
 Prepare your environment
 ------------------------
 
-- First, you need to install git, Composer and Docker
+  - First, you need to install git, Composer and Docker
 
 Follow the steps for Git Installation here : https://git-scm.com/downloads
 
@@ -14,7 +14,7 @@ For Composer here : https://getcomposer.org/download/
 
 And for Docker (for Mac, but Windows Installation is not far away :)) here : https://docs.docker.com/docker-for-mac/
 
-- Now your're ready to use git. It's time to init project : to do this, go to your working directory and use this command :
+  - Now your're ready to use git. It's time to init project : to do this, go to your working directory and use this command :
 
 ```
 git init
