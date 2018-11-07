@@ -66,10 +66,9 @@ class ShowAllTasksController
         $response = new Response($this->twig->render('task/list.html.twig', ['tasks' => $this->taskRepository->findAllTasks()]));
         $response->setEtag(md5($response->getContent()));
         $response->setPublic();
-        if($response->isNotModified($request)) {
+        if ($response->isNotModified($request)) {
             return $response;
         }
         return $response;
     }
-
 }

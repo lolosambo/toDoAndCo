@@ -77,5 +77,4 @@ class ShowAllTasksControllerTest extends WebTestCase
         $this->assertSame(1, $crawler->filter('html:contains("Créer une tâche")')->count());
         $this->assertInstanceOf(Response::class, $this->client->getResponse());
     }
-
 }

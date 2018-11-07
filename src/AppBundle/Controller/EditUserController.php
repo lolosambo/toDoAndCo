@@ -107,7 +107,7 @@ class EditUserController
         EditUserHandlerInterface $handler
     ) {
         $this->token->getToken()->getUser();
-        if(($this->token->getToken()->getUser() === "anon.") || ($this->token->getToken()->getUser()->getRole() === "ROLE_USER")){
+        if (($this->token->getToken()->getUser() === "anon.") || ($this->token->getToken()->getUser()->getRole() === "ROLE_USER")) {
             return new RedirectResponse($this->urlGenerator->generate('login'));
         }
         $user = $this->userRepository->findUser(intval($request->get('id')));
@@ -118,7 +118,7 @@ class EditUserController
 
             return new RedirectResponse($this->urlGenerator->generate('user_list'));
         }
-            return new Response($this->twig->render('user/edit.html.twig', [
+        return new Response($this->twig->render('user/edit.html.twig', [
                 'form' => $form->createView(),
                 'user' => $user
             ]));

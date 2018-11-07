@@ -178,5 +178,4 @@ class User implements UserInterface
         $task->setUser($this);
         return $this;
     }
-
 }

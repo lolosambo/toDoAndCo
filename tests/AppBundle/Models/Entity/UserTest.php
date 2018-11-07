@@ -55,7 +55,6 @@ class UserTest extends TestCase
         static::assertObjectHasAttribute('email', $this->user);
         static::assertObjectHasAttribute('role', $this->user);
         static::assertObjectHasAttribute('tasks', $this->user);
-
     }
 
     /**

@@ -100,5 +100,4 @@ class DeleteTaskControllerTest extends WebTestCase
         $this->assertSame(1, $crawler->filter('div.alert-success:contains("Superbe ! La tâche a bien été supprimée.")')->count());
         $this->assertInstanceOf(Response::class, $this->client->getResponse());
     }
-
 }

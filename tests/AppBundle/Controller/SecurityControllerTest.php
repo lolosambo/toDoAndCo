@@ -85,5 +85,4 @@ class SecurityControllerTest extends WebTestCase
         $result = $action->logoutCheck();
         self::assertNull($result);
     }
-
 }

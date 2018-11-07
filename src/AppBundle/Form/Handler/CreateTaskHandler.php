@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
-
 /**
  * Class CreateTaskHandler.
  *
@@ -62,7 +61,8 @@ class CreateTaskHandler implements CreateTaskHandlerInterface
      * @param FormInterface $taskType
      * @return bool|mixed
      */
-    public function handle(FormInterface $taskType) {
+    public function handle(FormInterface $taskType)
+    {
         if ($taskType->isSubmitted() && $taskType->isValid()) {
             $title = $taskType->getData()->title;
             $content = $taskType->getData()->content;

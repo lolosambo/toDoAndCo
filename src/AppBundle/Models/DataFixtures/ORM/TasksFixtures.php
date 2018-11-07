@@ -35,17 +35,17 @@ class TasksFixtures extends Fixture implements DependentFixtureInterface
 
         $users = ['AnonymousUser', 'toDoUser', 'toDoAdmin'];
 
-        for($i=1; $i<21; ++$i) {
+        for ($i=1; $i<21; ++$i) {
             $user = $this->getReference($users[array_rand($users)]);
             $title = 'Tâche N°'.$i;
-            if($user->getUserName() === 'AnonymousUser') {
+            if ($user->getUserName() === 'AnonymousUser') {
                 $savedContent = $content[2];
             } elseif ($user->getUserName() === 'toDoUser') {
                 $savedContent = $content[1];
-            }else {
+            } else {
                 $savedContent = $content[0];
             }
-            $task = new Task($title, $savedContent );
+            $task = new Task($title, $savedContent);
             $task->setUser($user);
             $task->toggle(0);
 

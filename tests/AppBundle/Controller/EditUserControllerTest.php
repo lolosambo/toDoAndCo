@@ -98,5 +98,4 @@ class EditUserControllerTest extends WebTestCase
         $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
         $this->assertInstanceOf(RedirectResponse::class, $this->client->getResponse());
     }
-
 }

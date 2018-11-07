@@ -97,7 +97,7 @@ class EditTaskController
         EditTaskHandlerInterface $handler
     ) {
         $this->token->getToken()->getUser();
-        if($this->token->getToken()->getUser() === "anon."){
+        if ($this->token->getToken()->getUser() === "anon.") {
             return new RedirectResponse($this->urlGenerator->generate('login'));
         }
         $task = $this->taskRepository->findTask(intval($request->attributes->get('id')));

@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace AppBundle\Form\DTO;
 
 use AppBundle\Form\DTO\Interfaces\TaskDTOInterface;
+
 /**
  * Class UserDTO.
  *

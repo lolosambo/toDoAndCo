@@ -31,7 +31,7 @@ class UsersFixtures extends Fixture
         $email = 'anonymous@todoandco.com';
         $role = "ROLE_USER";
         $user = new User($username, $password, $email, $role);
-        $this->addReference('AnonymousUser', $user );
+        $this->addReference('AnonymousUser', $user);
         $manager->persist($user);
 
         $username = 'toDoUser';
@@ -39,7 +39,7 @@ class UsersFixtures extends Fixture
         $email = 'toDoUser@todoandco.com';
         $role = "ROLE_USER";
         $user = new User($username, $password, $email, $role);
-        $this->addReference('toDoUser', $user );
+        $this->addReference('toDoUser', $user);
         $manager->persist($user);
 
         $username = 'toDoAdmin';
@@ -47,7 +47,7 @@ class UsersFixtures extends Fixture
         $email = 'admin2@todoandco.com';
         $role = "ROLE_ADMIN";
         $user = new User($username, $password, $email, $role);
-        $this->addReference('toDoAdmin', $user );
+        $this->addReference('toDoAdmin', $user);
         $manager->persist($user);
 
         $manager->flush();

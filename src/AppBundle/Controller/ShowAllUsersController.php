@@ -60,8 +60,7 @@ class ShowAllUsersController
         TokenStorageInterface $token,
         UrlGeneratorInterface $urlGenerator,
         Environment $twig
-    )
-    {
+    ) {
         $this->userRepository = $userRepository;
         $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;
@@ -80,17 +79,19 @@ class ShowAllUsersController
     public function __invoke(Request $request)
     {
         $this->token->getToken()->getUser();
-        if(($this->token->getToken()->getUser() === "anon.") || ($this->token->getToken()->getUser()->getRole() !== "ROLE_ADMIN")){
+        if (($this->token->getToken()->getUser() === "anon.") || ($this->token->getToken()->getUser()->getRole() !== "ROLE_ADMIN")) {
             $request->getSession()->getFlashBag()->add('error', "Petit malin ! Vous n'avez pas accès à cette fonction !");
             return new RedirectResponse($this->urlGenerator->generate('login'));
         }
-        $response = new Response($this->twig->render('user/list.html.twig', [
+        $response = new Response($this->twig->render(
+            'user/list.html.twig',
+            [
             'users' => $this->userRepository->findAllUsers()
             ]
         ));
         $response->setEtag(md5($response->getContent()));
         $response->setPublic();
-        if($response->isNotModified($request)) {
+        if ($response->isNotModified($request)) {
             return $response;
         }
         return $response;

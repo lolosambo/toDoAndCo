@@ -73,13 +73,13 @@ class IndexController
     public function __invoke(Request $request)
     {
         $this->token->getToken()->getUser();
-        if($this->token->getToken()->getUser() === "anon."){
+        if ($this->token->getToken()->getUser() === "anon.") {
             return new RedirectResponse($this->urlGenerator->generate('login'));
         }
         $response = new Response($this->twig->render('default/index.html.twig'));
         $response->setEtag(md5($response->getContent()));
         $response->setPublic();
-        if($response->isNotModified($request)) {
+        if ($response->isNotModified($request)) {
             return $response;
         }
         return $response;

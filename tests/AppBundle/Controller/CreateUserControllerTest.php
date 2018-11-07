@@ -94,5 +94,4 @@ class CreateUserControllerTest extends WebTestCase
         $this->assertSame(1, $crawler->filter('html:contains("Créer un utilisateur")')->count());
         $this->assertInstanceOf(Response::class, $this->client->getResponse());
     }
-
 }

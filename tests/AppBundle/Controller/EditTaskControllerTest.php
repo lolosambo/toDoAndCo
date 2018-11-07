@@ -113,5 +113,4 @@ class EditTaskControllerTest extends WebTestCase
         $crawler = $this->client->followRedirect();
         $this->assertInstanceOf(Response::class, $this->client->getResponse());
     }
-
 }

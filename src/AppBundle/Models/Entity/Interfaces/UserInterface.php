@@ -67,5 +67,4 @@ interface UserInterface
      * @param Task $task
      */
     public function addTask(Task $task);
-
 }

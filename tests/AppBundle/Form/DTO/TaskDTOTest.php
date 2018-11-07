@@ -51,5 +51,4 @@ class TaskDTOTest extends TestCase
     {
         static::assertInternalType('string', $this->dto->content);
     }
-
 }
